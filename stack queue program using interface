@@ -1,0 +1,136 @@
+import java.util.Scanner;
+interface Stack
+{
+    void push(int element);
+    int pop();
+    boolean isEmpty();
+}
+
+interface Queue
+{
+    void enqueue(int element);
+    int dequeue();
+    boolean isEmpty();
+}
+
+class StackImplementation implements Stack
+{
+    private int[] arr;
+    private int top;
+    private int capacity;
+
+    public StackImplementation(int size)
+    {
+         arr = new int[size];
+         capacity = size;
+         top=-1;
+    }
+    
+    public void push(int element)
+    {
+         if(top == capacity - 1)
+         {
+              System.out.println("Stack Overflow");
+         }
+         else
+         {
+              arr[++top] = element;
+         }
+    }
+    public int pop()
+    {
+         if(top == -1)
+         {
+             System.out.println("Stack Underflow");
+             return -1;
+         }
+         else
+         {
+             return arr[top--];
+         }
+    }
+
+    public boolean isEmpty() 
+    {
+        return top == -1;
+    }
+}
+
+class QueueImplementation implements Queue
+{
+     private int[] arr;
+     private int front;
+     private int rear;
+     private int capacity;
+
+     public QueueImplementation(int size)
+     {
+          arr = new int[size];
+          capacity = size;
+          front = 0;
+          rear = -1;
+     }
+
+     public void enqueue(int element)
+     {
+         if(rear == capacity - 1)
+         {
+              System.out.println("Queue Overflow");
+         }
+         else
+         {
+              arr[++rear] = element;
+         }
+     }
+     public int dequeue()
+     {
+          if(front > rear)
+          {
+               System.out.println("Queue Underflow");
+               return -1;
+          }
+          else
+          {
+               return arr[front++];
+          }
+     }
+     public boolean isEmpty() 
+     {
+        return front > rear;
+     }
+}
+public class Main
+{
+    public static void main(String[] arg)
+    {
+         Scanner sc = new Scanner(System.in);
+         System.out.println("Enter the size of stack and queue : ");
+         int size = sc.nextInt();
+
+         Stack stack = new StackImplementation(size);
+         Queue queue = new QueueImplementation(size);
+ 
+         System.out.println("Enter the element of stack : ");
+         for(int i = 0; i < size; i++)
+         {
+             int element = sc.nextInt();
+             stack.push(element);
+         }
+  
+         System.out.println("Enter the element of queue : ");
+         for(int i = 0; i < size; i++)
+         {
+             int element = sc.nextInt();
+             queue.enqueue(element);
+         }
+
+         System.out.println("Popped from stack: " + stack.pop());
+         System.out.println("Is stack empty? " + stack.isEmpty());
+
+        System.out.println("Dequeued from queue: " + queue.dequeue());
+        System.out.println("Is queue empty? " + queue.isEmpty());
+
+        sc.close();
+    }
+}
+
