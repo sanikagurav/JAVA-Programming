@@ -1,0 +1,19 @@
+public static void main (String[] args) 
+{
+  int arr[] = {3, 2, -1, 9, -8, 6};
+  int size = arr.length;
+  int l, r, min_sum, sum, min_l_num, min_r_num;      
+  min_l_num = 0;
+  min_r_num = 1;
+  min_sum = arr[0] + arr[1];      
+  for(l = 0; l < size - 1; l++)   {
+    for(r = l+1; r  Math.abs(sum))
+      {
+        min_sum = sum;
+        min_l_num = l;
+        min_r_num = r;
+      }
+    }
+  }
+  System.out.println(arr[min_l_num],arr[min_r_num]);
+}
