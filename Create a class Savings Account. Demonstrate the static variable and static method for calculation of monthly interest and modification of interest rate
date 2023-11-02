@@ -1,0 +1,63 @@
+public class SavingsAccount 
+{
+    private double balance;
+    private static double annualInterestRate; // Static variable for annual interest rate
+
+    public SavingsAccount(double initialBalance) 
+    {
+        balance = initialBalance;
+    }
+
+    public void deposit(double amount) 
+    {
+        balance += amount;
+    }
+
+    public void withdraw(double amount) 
+    {
+        balance -= amount;
+    }
+
+    public double getBalance() 
+    {
+        return balance;
+    }
+
+    // Static method to set the annual interest rate
+    public static void setAnnualInterestRate(double rate) 
+    {
+        annualInterestRate = rate;
+    }
+
+    // Static method to calculate monthly interest
+    public static double calculateMonthlyInterest(double balance) 
+    {
+        double monthlyInterestRate = annualInterestRate / 12.0;
+        return balance * (monthlyInterestRate / 100);
+    }
+
+    public static void main(String[] args) 
+    {
+        SavingsAccount saver1 = new SavingsAccount(2000);
+        SavingsAccount saver2 = new SavingsAccount(3000);
+
+        SavingsAccount.setAnnualInterestRate(4); // Set the annual interest rate to 4%
+        
+        double interest1 = SavingsAccount.calculateMonthlyInterest(saver1.getBalance());
+        double interest2 = SavingsAccount.calculateMonthlyInterest(saver2.getBalance());
+        interest1 = Math.round(interest1 * 100.0) / 100.0;
+        
+        System.out.println("Saver 1 Monthly Interest: $" + interest1);
+        System.out.println("Saver 2 Monthly Interest: $" + interest2);
+
+        // Modify the interest rate
+        SavingsAccount.setAnnualInterestRate(5); // Change the annual interest rate to 5%
+
+        interest1 = SavingsAccount.calculateMonthlyInterest(saver1.getBalance());
+        interest2 = SavingsAccount.calculateMonthlyInterest(saver2.getBalance());
+        interest1 = Math.round(interest1 * 100.0) / 100.0;
+
+        System.out.println("Saver 1 Monthly Interest (After Rate Change): $" + interest1);
+        System.out.println("Saver 2 Monthly Interest (After Rate Change): $" + interest2);
+    }
+}
