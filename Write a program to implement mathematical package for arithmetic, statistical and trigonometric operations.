@@ -1,0 +1,164 @@
+import java.util.Scanner;
+import java.lang.Math;
+
+class MathOperations 
+{
+    // Arithmetic Operations
+    public static double add(double a, double b) 
+    {
+        return a + b;
+    }
+
+    public static double subtract(double a, double b) 
+    {
+        return a - b;
+    }
+
+    public static double multiply(double a, double b) 
+    {
+        return a * b;
+    }
+
+    public static double divide(double a, double b) 
+    {
+        if (b != 0) 
+        {
+            return a / b;
+        } 
+        else 
+        {
+            System.out.println("Error: Division by zero!");
+            return Double.NaN; // Not a Number
+        }
+    }
+
+    // Statistical Operations
+    public static double findMean(double[] numbers) 
+    {
+        double sum = 0;
+        for (double num : numbers) 
+        {
+            sum += num;
+        }
+        return sum / numbers.length;
+    }
+
+    public static double findStandardDeviation(double[] numbers) 
+    {
+        double mean = findMean(numbers);
+        double sum = 0;
+        for (double num : numbers) 
+        {
+            sum += Math.pow(num - mean, 2);
+        }
+        return Math.sqrt(sum / numbers.length);
+    }
+
+    // Trigonometric Operations
+    public static double calculateSine(double angle) 
+    {
+        return Math.sin(Math.toRadians(angle));
+    }
+
+    public static double calculateCosine(double angle) 
+    {
+        return Math.cos(Math.toRadians(angle));
+    }
+
+    public static double calculateTangent(double angle) 
+    {
+        return Math.tan(Math.toRadians(angle));
+    }
+}
+
+public class Main1 
+{
+    public static void main(String[] args) 
+    {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Select Operation:");
+        System.out.println("1. Arithmetic Operations");
+        System.out.println("2. Statistical Operations");
+        System.out.println("3. Trigonometric Operations");
+        int choice = scanner.nextInt();
+
+        if (choice == 1) 
+        {
+            System.out.println("Enter two numbers:");
+            double num1 = scanner.nextDouble();
+            double num2 = scanner.nextDouble();
+            System.out.println("1. Add\n2. Subtract\n3. Multiply\n4. Divide");
+            int operation = scanner.nextInt();
+
+            double result = 0;
+            switch (operation) 
+            {
+                case 1:
+                    result = MathOperations.add(num1, num2);
+                    break;
+                case 2:
+                    result = MathOperations.subtract(num1, num2);
+                    break;
+                case 3:
+                    result = MathOperations.multiply(num1, num2);
+                    break;
+                case 4:
+                    result = MathOperations.divide(num1, num2);
+                    break;
+                default:
+                    System.out.println("Invalid operation");
+                    return;
+            }
+
+            System.out.println("Result: " + result);
+        } 
+        else if (choice == 2) 
+        {
+            System.out.println("Enter the number of elements:");
+            int n = scanner.nextInt();
+            double[] numbers = new double[n];
+            System.out.println("Enter " + n + " numbers:");
+            for (int i = 0; i < n; i++) 
+            {
+                numbers[i] = scanner.nextDouble();
+            }
+            double mean = MathOperations.findMean(numbers);
+            double standardDeviation = MathOperations.findStandardDeviation(numbers);
+            System.out.println("Mean: " + mean);
+            System.out.println("Standard Deviation: " + standardDeviation);
+        } 
+        else if (choice == 3) 
+        {
+            System.out.println("Enter an angle in degrees:");
+            double angle = scanner.nextDouble();
+            System.out.println("1. Sine\n2. Cosine\n3. Tangent");
+            int operation = scanner.nextInt();
+
+            double result = 0;
+            switch (operation) 
+            {
+                case 1:
+                    result = MathOperations.calculateSine(angle);
+                    break;
+                case 2:
+                    result = MathOperations.calculateCosine(angle);
+                    break;
+                case 3:
+                    result = MathOperations.calculateTangent(angle);
+                    break;
+                default:
+                    System.out.println("Invalid operation");
+                    return;
+            }
+
+            System.out.println("Result: " + result);
+        } 
+       else 
+        {
+            System.out.println("Invalid choice");
+        }
+
+        scanner.close();
+    }
+}
