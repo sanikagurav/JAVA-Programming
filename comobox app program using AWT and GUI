@@ -1,0 +1,41 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ComoboxApp {
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Combo Box Example");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(300, 200);
+
+            // Create a combo box
+            String[] items = {"new","India", "U.S.","Germany","France","china","Russia","Sri Lanaka"};
+            JComboBox<String> comboBox = new JComboBox<>(items);
+
+            // Create a label to display the selected item
+            JLabel label = new JLabel("Selected Item: ");
+
+            // Add an ActionListener to the combo box
+            comboBox.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Update the label when an item is selected
+                    String selected = (String) comboBox.getSelectedItem();
+                    label.setText("Selected Item: " + selected);
+                }
+            });
+
+            // Create a panel and add components to it
+            JPanel panel = new JPanel();
+            panel.add(comboBox);
+            panel.add(label);
+
+            // Add the panel to the frame
+            frame.add(panel);
+
+            // Set the frame to be visible
+            frame.setVisible(true);
+        });
+    }
+}
