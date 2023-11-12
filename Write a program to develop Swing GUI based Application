@@ -1,0 +1,52 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class SwingGUIApplication extends JFrame {
+
+    private JLabel label;
+    private JButton button;
+
+    public SwingGUIApplication() {
+        // Set the title of the JFrame
+        super("Swing GUI Application");
+
+        // Create a label
+        label = new JLabel("Hello, Swing!");
+        label.setHorizontalAlignment(JLabel.CENTER);
+
+        // Create a button
+        button = new JButton("Click Me");
+
+        // Add an ActionListener to the button
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Update the label text when the button is clicked
+                label.setText("Button Clicked!");
+            }
+        });
+
+        // Set layout manager for the JFrame
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+        // Add components to the JFrame
+        add(label);
+        add(button);
+
+        // Set JFrame properties
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(300, 150);
+        setLocationRelativeTo(null); // Center the JFrame on the screen
+    }
+
+    public static void main(String[] args) {
+        // Create and display the Swing GUI application
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new SwingGUIApplication().setVisible(true);
+            }
+        });
+    }
+}
