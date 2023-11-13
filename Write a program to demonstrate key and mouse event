@@ -1,0 +1,77 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+public class KeyEventDemo extends JFrame implements KeyListener, MouseListener {
+
+    private JLabel label;
+
+    public KeyEventDemo() {
+        super("Key and Mouse Event Demo");
+
+        label = new JLabel("Press a key or click the mouse");
+        label.setHorizontalAlignment(JLabel.CENTER);
+
+        add(label);
+
+        addKeyListener(this);  // Registering the JFrame to listen for key events
+        addMouseListener(this);  // Registering the JFrame to listen for mouse events
+
+        setLayout(new GridLayout(1, 1));
+        setSize(300, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            new KeyEventDemo().setVisible(true);
+        });
+    }
+
+    // KeyListener methods
+    @Override
+    public void keyTyped(KeyEvent e) {
+        label.setText("Key Typed: " + e.getKeyChar());
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        label.setText("Key Pressed: " + KeyEvent.getKeyText(e.getKeyCode()));
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        label.setText("Key Released: " + KeyEvent.getKeyText(e.getKeyCode()));
+    }
+
+    // MouseListener methods
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        label.setText("Mouse Clicked at (" + e.getX() + ", " + e.getY() + ")");
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        label.setText("Mouse Pressed at (" + e.getX() + ", " + e.getY() + ")");
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        label.setText("Mouse Released at (" + e.getX() + ", " + e.getY() + ")");
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        label.setText("Mouse Entered");
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        label.setText("Mouse Exited");
+    }
+}
+
