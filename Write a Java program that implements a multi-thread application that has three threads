@@ -1,0 +1,37 @@
+import java.util.Random;
+
+class MyThread extends Thread {
+    private int threadId;
+    private Random random = new Random();
+
+    public MyThread(int id) {
+        this.threadId = id;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Thread " + threadId + ": Count " + i);
+            try {
+                // Sleep for a random amount of time to simulate some work
+                Thread.sleep(random.nextInt(1000));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+public class MultiThreadExample {
+    public static void main(String[] args) {
+        // Create three threads
+        MyThread thread1 = new MyThread(1);
+        MyThread thread2 = new MyThread(2);
+        MyThread thread3 = new MyThread(3);
+
+        // Start the threads
+        thread1.start();
+        thread2.start();
+        thread3.start();
+    }
+}
