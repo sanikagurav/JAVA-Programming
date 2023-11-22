@@ -1,0 +1,19 @@
+public class Javasingleton
+{
+private static  volatile Javasingleton  singleinstance;
+private Javasingleton(){}
+public static   Javasingleton  getInstance()
+{
+    if (singleinstance ==null )
+    {
+        synchronized(Javasingleton.class)
+        {
+            if (singleinstance ==null )
+            {
+                singleinstance=new Javasingleton();
+            }
+        }
+    }
+    return singleinstance ;
+}
+}
