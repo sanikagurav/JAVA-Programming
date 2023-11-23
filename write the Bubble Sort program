@@ -1,0 +1,16 @@
+public void sort(int[] numbers) {
+validateInput(numbers);
+int length = numbers.length;
+boolean swap = true;
+while (swap) {
+  swap = false;
+  for (int i = 0; i < length - 1; i++) {
+    for (int j = 0; j  numbers[j + 1]) {
+        swap(numbers, j, j + 1);
+        swap = true;
+      }
+    }
+  }
+}
+}
+}
