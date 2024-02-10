@@ -1,0 +1,20 @@
+//Make a program that takes the radius of a circle as input, calculates its radius and area and prints it as output to the user.
+
+import java.util.*;
+
+public class Circle {
+    public static double Circumference(double radius) {
+        //final float pi = 3.14;
+
+        double circumference = 2 * 3.14 * radius;
+        return circumference;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double radius = sc.nextInt();
+        
+        double circumference = Circumference(radius);
+        System.out.println("Circumference of circle is : " +circumference);
+    }
+}
