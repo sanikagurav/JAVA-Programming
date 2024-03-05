@@ -1,0 +1,25 @@
+public class ArraySum {
+
+    public static void main(String[] args) {
+        int[][] array = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        int sum = sumArrayValues(array);
+        System.out.println("Sum of all values in the array: " + sum);
+    }
+
+    public static int sumArrayValues(int[][] array) {
+        int sum = 0;
+
+        for (int[] row : array) {
+            for (int value : row) {
+                sum += value;
+            }
+        }
+
+        return sum;
+    }
+}
